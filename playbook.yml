@@ -1,0 +1,13 @@
+---
+  - name: Setup server
+    hosts: api
+    remote_user: root
+
+    roles:
+      - init
+      - user
+      - ssh
+      - firewall
+      - timezone
+      - swap
+...

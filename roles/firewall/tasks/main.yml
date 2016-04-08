@@ -1,0 +1,32 @@
+---
+  - name: Setup ufw
+    ufw:
+      state=enabled
+      policy=deny
+
+  - name: Allow ssh traffic
+    ufw:
+      rule=allow
+      port={{ssh_port}}
+      proto=tcp
+
+  - name: Allow http traffic
+    ufw:
+      rule=allow
+      port=80
+      proto=tcp
+
+  - name: Allow ssl traffic
+    when: allow_ssl
+    ufw:
+      rule=allow
+      port=443
+      proto=tcp
+
+  - name: Allow stmp traffic
+    when: allow_smtp
+    ufw:
+      rule=allow
+      port=25
+      proto=tcp
+...

@@ -1,0 +1,15 @@
+---
+  - name: Set timezone variables
+    copy:
+      content='Europe/Paris'
+      dest=/etc/timezone
+      owner=root
+      group=root
+      mode=0644
+      backup=yes
+    notify:
+      - Update timezone
+
+  - name: Install ntp package
+    apt: name=ntp state=latest
+...

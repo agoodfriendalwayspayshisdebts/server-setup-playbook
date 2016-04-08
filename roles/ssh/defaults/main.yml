@@ -1,0 +1,4 @@
+---
+  ssh_port: 2220
+  lock_ssh: yes
+...
