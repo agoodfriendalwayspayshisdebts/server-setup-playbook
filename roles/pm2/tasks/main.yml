@@ -1,0 +1,20 @@
+---
+  - name: Install nodejs packages
+    become: yes
+    apt:
+      name={{item}}
+      state=latest
+    with_items:
+      - nodejs
+      - npm
+
+  - name: link
+    file:
+      src=/usr/bin/nodejs
+      dest=/usr/bin/node
+      state=link
+
+  - name: Install pm2
+    become: yes
+    command: npm install pm2 -g
+...

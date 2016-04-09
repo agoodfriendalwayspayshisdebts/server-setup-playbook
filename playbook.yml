@@ -2,6 +2,8 @@
   - name: Setup server
     hosts: api
     remote_user: root
+    vars:
+      lock_ssh: no
 
     roles:
       - init
@@ -10,4 +12,6 @@
       - firewall
       - timezone
       - swap
+      - nginx
+      - pm2
 ...

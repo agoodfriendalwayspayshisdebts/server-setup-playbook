@@ -1,0 +1,10 @@
+server {
+    location / {
+        proxy_pass http://localhost:{{local_port}};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+    location /public {
+        alias  {{static_folder_path}};
+    }
+}
