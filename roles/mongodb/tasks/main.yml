@@ -1,0 +1,29 @@
+---
+  - name: Import public GPG key
+    apt_key:
+      keyserver=keyserver.ubuntu.com
+      id=EA312927
+      state=present
+
+  - name: Create a list file
+    file:
+      path=/etc/apt/sources.list.d/mongodb-org-3.2.list
+      state=touch
+
+  - name: Populate list file
+    lineinfile:
+      dest=/etc/apt/sources.list.d/mongodb-org-3.2.list
+      regexp='^deb'
+      line='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse'
+      state=present
+
+  - name: Install packages
+    apt:
+      name=mongodb-org
+      update_cache=yes
+
+  - name: Start service
+    service:
+      name=mongod
+      state=started
+...

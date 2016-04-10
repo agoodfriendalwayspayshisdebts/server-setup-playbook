@@ -8,7 +8,7 @@
       - nodejs
       - npm
 
-  - name: link
+  - name: Symbolic link /usr/bin/nodejs to /usr/bin/node
     file:
       src=/usr/bin/nodejs
       dest=/usr/bin/node

@@ -1,7 +1,4 @@
 ---
-- name: Install apt packages
-  apt: name={{item}} update_cache=yes state=latest
-  with_items:
-    - vim
-    - git
+- name: Update apt cache and upgrade packages
+  apt: update_cache=yes upgrade=yes
 ...

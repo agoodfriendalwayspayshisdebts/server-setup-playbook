@@ -1,4 +1,9 @@
 ---
+  - name: Install ufw
+    apt:
+      name=ufw
+      state=latest
+
   - name: Setup ufw
     ufw:
       state=enabled

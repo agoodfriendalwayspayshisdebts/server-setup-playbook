@@ -1,15 +1,29 @@
 ---
   - name: Setup server
-    hosts: api
+    hosts: all
     remote_user: root
 
     roles:
       - init
       - user
-      - ssh
-      - firewall
       - timezone
       - swap
       - nginx
       - pm2
+
+  - name: Setup apis
+    hosts: api
+    remote_user: root
+
+    roles:
+      - jre
+      - mongodb
+
+  - name: Configure ssh
+    hosts: all
+    remote_user: root
+
+    roles:
+      - ssh
+      - firewall
 ...
