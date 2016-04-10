@@ -1,10 +1,24 @@
 server {
-    location / {
-        proxy_pass http://localhost:{{local_port}};
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
+  listen 80;
+  server_name {{domain}};
+  root /home/{{user}}/site/;
+
+  location / {
+    if (-f $document_root/maintenance.html) {
+      return 503;
     }
-    location /public {
-        alias  {{static_folder_path}};
-    }
+
+    proxy_pass http://localhost:{{local_port}};
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+  
+  location /public {
+    alias  {{static_folder_path}};
+  }
+
+  error_page 503 @maintenance;
+  location @maintenance {
+    rewrite ^(.*)$ /maintenance.html break;
+  }
 }

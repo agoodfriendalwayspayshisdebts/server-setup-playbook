@@ -9,7 +9,6 @@
       - timezone
       - swap
       - nginx
-      - pm2
 
   - name: Setup apis
     hosts: api
