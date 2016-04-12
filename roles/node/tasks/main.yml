@@ -1,0 +1,27 @@
+---
+  - name: Get script
+    get_url:
+      url=https://deb.nodesource.com/setup_4.x
+      dest=/root/node_script.sh
+
+  - name: Execute script
+    become: yes
+    command: bash /root/node_script.sh
+
+  - name: Delete file
+    file:
+      path=/root/node_script.sh
+      state=absent
+
+  - name: Install nodejs package
+    become: yes
+    apt:
+      name=nodejs
+      state=latest
+
+  - name: Symbolic link /usr/bin/nodejs to /usr/bin/node
+    file:
+      src=/usr/bin/nodejs
+      dest=/usr/bin/node
+      state=link
+...

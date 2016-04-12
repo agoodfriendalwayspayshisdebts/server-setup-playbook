@@ -22,7 +22,7 @@
   - name: Create configuration
     become: yes
     template:
-      src={{nginx_config_path}}
+      src=templates/nginx_config.j2
       dest=/etc/nginx/sites-available/{{domain_name}}
 
   - name: Activate domain {{domain_name}}

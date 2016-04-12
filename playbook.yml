@@ -10,13 +10,20 @@
       - swap
       - nginx
 
-  - name: Setup apis
+  - name: Setup api
     hosts: api
     remote_user: root
 
     roles:
       - jre
       - mongodb
+
+  - name: Setup webapp
+    hosts: webapp
+    remote_user: root
+
+    roles:
+      - node
 
   - name: Configure ssh
     hosts: all
