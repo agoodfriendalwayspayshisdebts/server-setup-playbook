@@ -6,12 +6,13 @@
 
   - name: Upgrade apt to the latest packages
     apt:
-      upgrade=dist
+      upgrade=safe
 
   - name: Install packages
     apt:
       name={{item}}
+      state=latest
     with_items:
       - vim
       - fail2ban
-  ...
+...
