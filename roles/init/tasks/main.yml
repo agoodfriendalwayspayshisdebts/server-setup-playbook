@@ -1,6 +1,17 @@
 ---
-- name: Update apt cache and upgrade packages
-  apt:
-    update_cache=yes
-    upgrade=dist
-...
+  - name: Update apt cache
+    apt:
+      update_cache=yes
+      cache_valid_time=3600
+
+  - name: Upgrade apt to the latest packages
+    apt:
+      upgrade=dist
+
+  - name: Install packages
+    apt:
+      name={{item}}
+      with_items:
+        - vim
+        - fail2ban
+  ...
